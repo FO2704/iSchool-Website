@@ -93,12 +93,34 @@
     <nav class="ios-nav fixed top-0 left-0 right-0 py-4 px-6 z-50">
         <div class="container mx-auto flex justify-between items-center">
             <a href="index.html" class="font-medium" style="color: currentColor;">iSchool</a>
-            <div class="flex gap-6 items-center">
+
+            <!-- Desktop Menu -->
+            <div class="hidden md:flex gap-6 items-center">
                 <a href="impressum.html" class="text-ios-blue hover:text-opacity-80 text-sm font-semibold">Impressum</a>
                 <a href="datenschutz.html" class="text-ios-blue hover:text-opacity-80 text-sm">Datenschutzerklärung</a>
-                <button id="darkModeToggle" class="dark-mode-toggle">
+                <button id="darkModeToggleDesktop" class="dark-mode-toggle">
                     <img src="icons/light.svg" alt="Light Mode" class="w-5 h-5 sun-icon" style="filter: brightness(0) saturate(100%);">
                     <img src="icons/dark.svg" alt="Dark Mode" class="w-5 h-5 moon-icon hidden" style="filter: brightness(0) saturate(100%);">
+                </button>
+            </div>
+
+            <!-- Mobile Menu Button -->
+            <div class="md:hidden">
+                <button id="mobileMenuButton" class="focus:outline-none">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu Dropdown -->
+        <div id="mobileMenu" class="hidden md:hidden absolute top-full left-0 right-0 bg-[var(--card-background)] border-t border-[var(--nav-border)] py-4 px-6">
+            <div class="flex flex-col gap-4 items-start">
+                <a href="impressum.html" class="text-ios-blue hover:text-opacity-80 text-sm w-full font-semibold">Impressum</a>
+                <a href="datenschutz.html" class="text-ios-blue hover:text-opacity-80 text-sm w-full">Datenschutzerklärung</a>
+                <button id="darkModeToggleMobile" class="dark-mode-toggle flex items-center justify-start gap-2 w-full text-left">
+                    <img src="icons/light.svg" alt="Light Mode" class="w-5 h-5 sun-icon" style="filter: brightness(0) saturate(100%);">
+                    <img src="icons/dark.svg" alt="Dark Mode" class="w-5 h-5 moon-icon hidden" style="filter: brightness(0) saturate(100%);">
+                    <span id="darkModeToggleMobileText" style="color: var(--text-color);">Modus wechseln</span>
                 </button>
             </div>
         </div>
@@ -168,12 +190,29 @@
     </div>
 
     <script>
-        // Dark mode functionality
-        const darkModeToggle = document.getElementById('darkModeToggle');
-        const sunIcon = darkModeToggle.querySelector('.sun-icon');
-        const moonIcon = darkModeToggle.querySelector('.moon-icon');
+        // --- Mobile Menu ---
+        const mobileMenuButton = document.getElementById('mobileMenuButton');
+        const mobileMenu = document.getElementById('mobileMenu');
+
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Close mobile menu if clicked outside
+        document.addEventListener('click', (event) => {
+            if (!mobileMenu.contains(event.target) && !mobileMenuButton.contains(event.target) && !mobileMenu.classList.contains('hidden')) {
+                mobileMenu.classList.add('hidden');
+            }
+        });
+
+        // --- Dark mode functionality ---
+        const darkModeToggleDesktop = document.getElementById('darkModeToggleDesktop');
+        const darkModeToggleMobile = document.getElementById('darkModeToggleMobile');
+        const darkModeToggleMobileText = document.getElementById('darkModeToggleMobileText');
+        const sunIcons = document.querySelectorAll('.sun-icon');
+        const moonIcons = document.querySelectorAll('.moon-icon');
         const html = document.documentElement;
-        
+
         // Check for saved theme preference or use OS preference
         const savedTheme = localStorage.getItem('theme');
         const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
@@ -181,32 +220,47 @@
         // Apply the appropriate theme
         if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
             enableDarkMode();
+            darkModeToggleMobileText.textContent = 'Lightmode';
         } else {
             disableDarkMode();
+            darkModeToggleMobileText.textContent = 'Darkmode';
         }
-        
+
         // Toggle dark/light mode
-        darkModeToggle.addEventListener('click', () => {
-            if (html.classList.contains('dark')) {
+        function toggleTheme() {
+             if (html.classList.contains('dark')) {
                 disableDarkMode();
             } else {
                 enableDarkMode();
             }
-        });
-        
+        }
+
+        darkModeToggleDesktop.addEventListener('click', toggleTheme);
+        darkModeToggleMobile.addEventListener('click', toggleTheme);
+
         function enableDarkMode() {
             html.classList.add('dark');
-            moonIcon.classList.remove('hidden');
-            sunIcon.classList.add('hidden');
+            moonIcons.forEach(icon => icon.classList.remove('hidden'));
+            sunIcons.forEach(icon => icon.classList.add('hidden'));
             localStorage.setItem('theme', 'dark');
+            darkModeToggleMobileText.textContent = 'Lightmode';
+            // Close mobile menu after toggle if open
+            if (!mobileMenu.classList.contains('hidden')) {
+                mobileMenu.classList.add('hidden');
+            }
         }
-        
+
         function disableDarkMode() {
             html.classList.remove('dark');
-            sunIcon.classList.remove('hidden');
-            moonIcon.classList.add('hidden');
+            sunIcons.forEach(icon => icon.classList.remove('hidden'));
+            moonIcons.forEach(icon => icon.classList.add('hidden'));
             localStorage.setItem('theme', 'light');
+            darkModeToggleMobileText.textContent = 'Darkmode';
+             // Close mobile menu after toggle if open
+            if (!mobileMenu.classList.contains('hidden')) {
+                mobileMenu.classList.add('hidden');
+            }
         }
     </script>
 </body>
-</html> 
+</html>
