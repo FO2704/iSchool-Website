@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="de" class="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Impressum - iSchool</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'ios-blue': '#007AFF',
+                        'ios-gray': '#F2F2F7',
+                        'ios-light-gray': '#E5E5EA',
+                        'ios-dark-gray': '#8E8E93',
+                    },
+                    fontFamily: {
+                        'sf-pro': ['-apple-system', 'BlinkMacSystemFont', 'San Francisco', 'Helvetica Neue', 'sans-serif'],
+                    },
+                    borderRadius: {
+                        'ios': '10px',
+                    },
+                    boxShadow: {
+                        'ios': '0 2px 10px rgba(0, 0, 0, 0.05)',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        :root {
+            /* Light mode variables */
+            --background-color: #F2F2F7;
+            --card-background: #ffffff;
+            --text-color: #000000;
+            --text-secondary: #8E8E93;
+            --nav-background: rgba(255, 255, 255, 0.8);
+            --nav-border: rgba(0, 0, 0, 0.1);
+            --card-shadow: rgba(0, 0, 0, 0.05);
+        }
+        
+        .dark {
+            /* Dark mode variables */
+            --background-color: #000000;
+            --card-background: #1C1C1E;
+            --text-color: #FFFFFF;
+            --text-secondary: #A9A9AF;
+            --nav-background: rgba(28, 28, 30, 0.8);
+            --nav-border: rgba(255, 255, 255, 0.1);
+            --card-shadow: rgba(0, 0, 0, 0.2);
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'San Francisco', 'Helvetica Neue', sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+        .ios-card {
+            border-radius: 10px;
+            box-shadow: 0 2px 10px var(--card-shadow);
+            background-color: var(--card-background);
+            overflow: hidden;
+            transition: background-color 0.3s ease, box-shadow 0.3s ease;
+        }
+        .ios-nav {
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            background-color: var(--nav-background);
+            border-bottom: 1px solid var(--nav-border);
+            transition: background-color 0.3s ease;
+        }
+        .dark-mode-toggle {
+            cursor: pointer;
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        /* Icon filter for dark mode */
+        .dark .sun-icon, .dark .moon-icon {
+            filter: brightness(0) invert(1) !important; /* Makes icons white in dark mode */
+        }
+    </style>
+</head>
+<body class="min-h-screen">
+    <!-- Navigation Bar -->
+    <nav class="ios-nav fixed top-0 left-0 right-0 py-4 px-6 z-50">
+        <div class="container mx-auto flex justify-between items-center">
+            <a href="index.html" class="font-medium" style="color: currentColor;">iSchool</a>
+            <div class="flex gap-6 items-center">
+                <a href="impressum.html" class="text-ios-blue hover:text-opacity-80 text-sm font-semibold">Impressum</a>
+                <a href="datenschutz.html" class="text-ios-blue hover:text-opacity-80 text-sm">Datenschutzerklärung</a>
+                <button id="darkModeToggle" class="dark-mode-toggle">
+                    <img src="icons/light.svg" alt="Light Mode" class="w-5 h-5 sun-icon" style="filter: brightness(0) saturate(100%);">
+                    <img src="icons/dark.svg" alt="Dark Mode" class="w-5 h-5 moon-icon hidden" style="filter: brightness(0) saturate(100%);">
+                </button>
+            </div>
+        </div>
+    </nav>
+    
+    <div class="container mx-auto px-4 py-10 max-w-3xl mt-16">
+        <div class="ios-card p-8">
+            <h1 class="text-3xl font-bold mb-8">Impressum</h1>
+            
+            <h2 class="text-xl font-semibold mb-4">Angaben gemäß § 5 DDG</h2>
+            <p class="mb-4">
+                <strong>Christian Siewers</strong><br>
+                Sophie-Scholl-Str. 18<br>
+                49176 Hilter a.T.W<br>
+                Deutschland
+            </p>
+            
+            <h2 class="text-xl font-semibold mb-4">Vertreten durch</h2>
+            <p class="mb-4">
+                <strong>Finn-Ole Siewers</strong>
+            </p>
+            
+            <h2 class="text-xl font-semibold mb-4">Kontakt</h2>
+            <ul class="list-disc pl-6 mb-6">
+                <li class="mb-2"><strong>Telefon:</strong> +49-15732704353</li>
+                <li class="mb-2"><strong>E-Mail:</strong> <a href="mailto:fo-dev@karsie.de" class="text-ios-blue">fo-dev@karsie.de</a></li>
+            </ul>
+            
+            <h2 class="text-xl font-semibold mb-4">Haftungsausschluss</h2>
+            
+            <h3 class="text-lg font-medium mb-3">Haftung für Inhalte</h3>
+            <p class="mb-4">
+                Die Inhalte unserer Seiten wurden mit größter Sorgfalt erstellt. Für die Richtigkeit, Vollständigkeit und Aktualität der Inhalte können wir jedoch keine Gewähr übernehmen. Als Diensteanbieter sind wir gemäß § 7 Abs.1 DDG für eigene Inhalte auf diesen Seiten nach den allgemeinen Gesetzen verantwortlich. Nach §§ 8 bis 10 DDG sind wir als Diensteanbieter jedoch nicht verpflichtet, übermittelte oder gespeicherte fremde Informationen zu überwachen oder nach Umständen zu forschen, die auf eine rechtswidrige Tätigkeit hinweisen. Verpflichtungen zur Entfernung oder Sperrung der Nutzung von Informationen nach den allgemeinen Gesetzen bleiben hiervon unberührt. Eine diesbezügliche Haftung ist jedoch erst ab dem Zeitpunkt der Kenntnis einer konkreten Rechtsverletzung möglich. Bei Bekanntwerden von entsprechenden Rechtsverletzungen werden wir diese Inhalte umgehend entfernen.
+            </p>
+            
+            <h3 class="text-lg font-medium mb-3">Haftung für Links</h3>
+            <p class="mb-4">
+                Unser Angebot enthält Links zu externen Webseiten Dritter, auf deren Inhalte wir keinen Einfluss haben. Deshalb können wir für diese fremden Inhalte auch keine Gewähr übernehmen. Für die Inhalte der verlinkten Seiten ist stets der jeweilige Anbieter oder Betreiber der Seiten verantwortlich. Die verlinkten Seiten wurden zum Zeitpunkt der Verlinkung auf mögliche Rechtsverstöße überprüft. Rechtswidrige Inhalte waren zum Zeitpunkt der Verlinkung nicht erkennbar. Eine permanente inhaltliche Kontrolle der verlinkten Seiten ist jedoch ohne konkrete Anhaltspunkte einer Rechtsverletzung nicht zumutbar. Bei Bekanntwerden von Rechtsverletzungen werden wir derartige Links umgehend entfernen.
+            </p>
+            
+            <h3 class="text-lg font-medium mb-3">Urheberrecht</h3>
+            <p class="mb-4">
+                Die durch die Seitenbetreiber erstellten Inhalte und Werke auf diesen Seiten unterliegen dem deutschen Urheberrecht. Die Vervielfältigung, Bearbeitung, Verbreitung und jede Art der Verwertung außerhalb der Grenzen des Urheberrechtes bedürfen der schriftlichen Zustimmung des jeweiligen Autors bzw. Erstellers. Downloads und Kopien dieser Seite sind nur für den privaten, nicht kommerziellen Gebrauch gestattet. Soweit die Inhalte auf dieser Seite nicht vom Betreiber erstellt wurden, werden die Urheberrechte Dritter beachtet. Insbesondere werden Inhalte Dritter als solche gekennzeichnet. Sollten Sie trotzdem auf eine Urheberrechtsverletzung aufmerksam werden, bitten wir um einen entsprechenden Hinweis. Bei Bekanntwerden von Rechtsverletzungen werden wir derartige Inhalte umgehend entfernen.
+            </p>
+            
+            <h3 class="text-lg font-medium mb-3">Datenschutz</h3>
+            <p class="mb-4">
+                Die Nutzung unserer Webseite ist in der Regel ohne Angabe personenbezogener Daten möglich. Soweit auf unseren Seiten personenbezogene Daten (beispielsweise Name, Anschrift oder E-Mail-Adressen) erhoben werden, erfolgt dies, soweit möglich, stets auf freiwilliger Basis. Diese Daten werden ohne Ihre ausdrückliche Zustimmung nicht an Dritte weitergegeben.
+            </p>
+            <p class="mb-4">
+                Wir weisen darauf hin, dass die Datenübertragung im Internet (z.B. bei der Kommunikation per E-Mail) Sicherheitslücken aufweisen kann. Ein lückenloser Schutz der Daten vor dem Zugriff durch Dritte ist nicht möglich.
+            </p>
+            <p class="mb-6">
+                Der Nutzung von im Rahmen der Impressumspflicht veröffentlichten Kontaktdaten durch Dritte zur Übersendung von nicht ausdrücklich angeforderter Werbung und Informationsmaterialien wird hiermit ausdrücklich widersprochen. Die Betreiber der Seiten behalten sich ausdrücklich rechtliche Schritte im Falle der unverlangten Zusendung von Werbeinformationen, etwa durch Spam-Mails, vor.
+            </p>
+            
+            <h2 class="text-xl font-semibold mb-4">Impressum erstellt durch</h2>
+            <p class="mb-4">
+                <a href="https://www.impressum-generator.de" class="text-ios-blue" target="_blank">impressum-generator.de</a> von der Kanzlei Hasselbach
+            </p>
+        </div>
+        
+        <!-- Footer -->
+        <footer class="text-center mt-8 pb-8" style="color: var(--text-secondary);">
+            <p>© 2025 iSchool. Alle Rechte vorbehalten.</p>
+        </footer>
+    </div>
+
+    <script>
+        // Dark mode functionality
+        const darkModeToggle = document.getElementById('darkModeToggle');
+        const sunIcon = darkModeToggle.querySelector('.sun-icon');
+        const moonIcon = darkModeToggle.querySelector('.moon-icon');
+        const html = document.documentElement;
+        
+        // Check for saved theme preference or use OS preference
+        const savedTheme = localStorage.getItem('theme');
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        
+        // Apply the appropriate theme
+        if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
+            enableDarkMode();
+        } else {
+            disableDarkMode();
+        }
+        
+        // Toggle dark/light mode
+        darkModeToggle.addEventListener('click', () => {
+            if (html.classList.contains('dark')) {
+                disableDarkMode();
+            } else {
+                enableDarkMode();
+            }
+        });
+        
+        function enableDarkMode() {
+            html.classList.add('dark');
+            moonIcon.classList.remove('hidden');
+            sunIcon.classList.add('hidden');
+            localStorage.setItem('theme', 'dark');
+        }
+        
+        function disableDarkMode() {
+            html.classList.remove('dark');
+            sunIcon.classList.remove('hidden');
+            moonIcon.classList.add('hidden');
+            localStorage.setItem('theme', 'light');
+        }
+    </script>
+</body>
+</html> 
